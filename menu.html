@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+  <title>모이라 메뉴</title>
+  <link rel="stylesheet" href="css/mo2ra.css">
+  <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+  <!-- Link Swiper's CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <!-- Demo styles -->
+  <style>
+    body {
+      background: #fff;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color: #000;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    html,
+    body {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .swiper {
+      width: 240px;
+      height: 320px;
+    }
+
+    .swiper-slide {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .swiper-slide:nth-child(1n) {
+      background-color: #E0D3DE;
+    }
+
+    .swiper-slide:nth-child(2n) {
+      background-color: #DCD2D0;
+    }
+
+    .swiper-slide:nth-child(3n) {
+      background-color: #D8D0C1;
+    }
+
+    .swiper-slide:nth-child(4n) {
+      background-color: #CBB8A9;
+    }
+
+    .swiper-slide:nth-child(5n) {
+      background-color: #BFB69E;
+    }
+
+    .swiper-slide:nth-child(6n) {
+      background-color: #B3B492;
+    }
+
+    .swiper-slide:nth-child(7n) {
+      background-color: #6F686D;
+    }
+
+    .swiper-slide a {
+      display: block;
+      width: 240px;
+      height: 320px;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+    }
+
+    .swiper-pagination {
+      margin-top: 400px;
+    }
+
+    #popup_layer {
+      width: 100vw;
+      max-width: 640px;
+      height: 100vh;
+      position: fixed;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 5;
+      padding: 30px;
+    }
+
+    .modal-footer {
+      width: 350px;
+      height: 100vh;
+      padding: 0px;
+      margin: 0;
+      top: 70%;
+      color: #fff;
+      text-align: center;
+      display: inline-block;
+      position: absolute;
+      padding: 0px !important;
+    }
+
+    .modal-today-close {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      text-align: center;
+      top: -20px;
+      width: 100%;
+    }
+
+    .text_box {
+      width: 240px;
+      height: 100px;
+      margin: 40vh auto;
+      text-align: center;
+      color: #fff;
+      line-height: 1.2em;
+    }
+
+    .text_box p {
+      font-size: 16px;
+    }
+
+    .hide {
+      display: none;
+    }
+
+    .popup_box {
+      position: relative;
+      top: 50%;
+      left: 50%;
+      width: 200px;
+      transform: translate(-50%, -50%);
+      z-index: 1002;
+      box-sizing: border-box;
+      background: rgba(0, 0, 0, 0.2);
+      text-align: center;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ----------------- modal ---------------- -->
+  <!--   <div class="modal">
+    <div class="text_box">
+      <p>더 많은 게임을 확인하시려면</p>
+      <br>
+      <p>화면을 좌우로 밀어보세요!</p>
+      <br>
+      <div style="height:10px"></div>
+      <div class="icon_box">
+        <i class="fa-solid fa-arrow-left-long fa-2x"></i>
+        <i class="fa-regular fa-hand-spock fa-3x"></i>
+        <i class="fa-solid fa-arrow-right-long fa-2x"></i>
+      </div>
+    </div>
+    <div class="modal-footer">
+        <div style="padding-right: 250px; text-decoration: underline; cursor: pointer;"> 
+          <span class="modal-today-close"> 오늘 하루 동안 보지 않기 </span> 
+        </div>
+        <a href="#" class="btn btn-default" data-dismiss="modal">닫기</a>
+      </div>
+  </div> -->
+  <!--   <div id="parent">
+  <div class="modalWrap" onclick="closeModal()"></div>
+  <div id="modal">
+    <div class="text_box">
+      <p>더 많은 게임을 확인하시려면</p>
+      <br>
+      <p>화면을 좌우로 밀어보세요!</p>
+      <br>
+      <div style="height:10px"></div>
+      <div class="icon_box">
+        <i class="fa-solid fa-arrow-left-long fa-2x"></i>
+        <i class="fa-regular fa-hand-spock fa-3x"></i>
+        <i class="fa-solid fa-arrow-right-long fa-2x"></i>
+      </div><br><br><br>
+    <button onclick="closeModalDuringOneday()">오늘 하루 동안 이 창을 열지 않음</button>
+  </div>
+</div>
+</div> -->
+
+  <div id="popup_layer">
+    <div class="popup_box">
+      <!--팝업 컨텐츠 영역-->
+      <div class="popup_cont">
+        <p>더 많은 게임을 확인하시려면</p>
+        <br>
+        <p>화면을 좌우로 밀어보세요!</p>
+        <br>
+        <div style="height:10px"></div>
+        <div class="icon_box">
+          <i class="fa-solid fa-arrow-left-long fa-2x"></i>
+          <i class="fa-regular fa-hand-spock fa-3x"></i>
+          <i class="fa-solid fa-arrow-right-long fa-2x"></i>
+        </div>
+      </div>
+      <!--팝업 버튼 영역-->
+      <div class="popup_btn">
+        <!--하루동안 보지않기-->
+        <br><br>
+        <a id="chk_today" href="javascript:closeToday();" class="close_day">하루동안 열지 않기</a>
+        <!--7일간 보지않기-->
+        <!-- <a id="chk_today" href="javascript:closeToday();" class="close_day">Do not open for 7 days</a>-->
+        <br><br>
+        <a href="javascript:closePop();">Close</a>
+      </div>
+    </div>
+  </div>
+  <!-- Swiper -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><a href="spinmain.html" class="">룰 렛<img src="img/menu01-1.png" alt=""></a>
+      </div>
+      <div class="swiper-slide"><a href="ladder game.html" class="">사 다 리<img src="img/menu02-2.png" alt=""> </a>
+      </div>
+      <div class="swiper-slide"><a href="snake game.html" class="pic3">뱀을조심하라!<img src="img/snake2.png" alt=""></a>
+      </div>
+      <div class="swiper-slide"><a href="drawing lots3.html" class="pic3">카드 뽑기<img src="img/bbg02.png" alt=""></a>
+      </div>
+      <div class="swiper-slide"><a href="change.html" class="pic3">타이밍 게임<img src="img/18.png" alt=""></a></div>
+      <!-- <div class="swiper-slide">Slide 7</div>
+      <div class="swiper-slide">Slide 8</div> -->
+      <!-- <div class="swiper-slide"><a href="loca_v2.html" class="pic3">강석문 테스트맨왕범짱</a></div> -->
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+
+
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      effect: "cards",
+      grabCursor: true,
+
+      pagination: {
+        el: ".swiper-pagination",
+        type: "progressbar",
+      },
+
+    });
+  </script>
+  <script>
+    // 쿠키 생성
+    function setCookie(name, value, expiredays) {  // 쿠키저장
+      var todayDate = new Date();  //date객체 생성 후 변수에 저장
+      todayDate.setDate(todayDate.getDate() + expiredays);
+      // 시간지정(현재시간 + 지정시간)
+      document.cookie = name + "=" + value + "; path=/; expires=" + todayDate.toUTCString() + ";"
+      //위 정보를 쿠키에 굽는다
+    }
+
+    $(function () {
+      /*$(".popup_box").draggable({containment:'parent', scroll:false});*/ // 레이어 팝업 창 드래그 가능
+      //{containment:'parent', scroll:false} 화면 영역 밖으로 드래그 안됌.
+
+      if (document.cookie.indexOf("popToday=close") < 0) {      // 쿠키 저장여부 체크
+        document.getElementById("popup_layer").style.display = "block";
+      } else {
+        document.getElementById("popup_layer").style.display = "none";
+      }
+    });
+
+    //오늘하루만보기 닫기버튼 스크립트
+    function closeToday() {
+      setCookie("popToday", "close", 1);
+      $("#popup_layer").css("display", "none");
+      document.getElementById("popup_layer").style.display = "none";
+    }
+    //그냥 닫기버튼 스크립트
+    function closePop() {
+      document.getElementById("popup_layer").style.display = "none";
+    }
+  /*  document.querySelector('.modal').addEventListener('click', function () {
+        this.classList.add('hide');
+      })*/
+    /* $(function(){
+        function setCookie(name, value, expiredays){
+      var today = new Date();
+    
+      console.log(today.getDate())
+    
+      today.setDate(today.getDate() + expiredays); // 현재시간에 하루를 더함 
+    
+      document.cookie = name + '=' + escape(value) + '; expires=' + today.toGMTString();
+    
+    }
+      
+    function getCookie(name) {
+    
+      var cookie = document.cookie;
+      
+      if (document.cookie != "") {
+        var cookie_array = cookie.split("; ");
+        console.log(cookie_array)
+        for ( var index in cookie_array) {
+          var cookie_name = cookie_array[index].split("=");
+          if (cookie_name[0] == "mycookie") {
+            return cookie_name[1];
+          }
+        }
+      }
+      return;
+    }
+    
+    
+    $(".modal-today-close").click(function() {
+      $(".modal").modal("hide");
+      setCookie("mycookie", 'popupEnd', 1);
+    })
+    
+    var checkCookie = getCookie("mycookie");
+      
+    if(checkCookie == 'popupEnd') {
+      $(".modal").modal("hide");
+    } else {
+      $(".modal").modal("show");  
+    }
+    });*/
+  </script>
+</body>
+
+</html>

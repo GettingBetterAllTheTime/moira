@@ -1,0 +1,291 @@
+</html>
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>snake</title>
+  <script>
+
+    function generateWinners() {
+      // Get the input values
+      const numPeople = document.getElementById("numPeople").value;
+      const numWinners = document.getElementById("numWinners").value;
+      const list = document.getElementById("list")
+      const element = document.getElementById('form');
+      element.style.display = 'none';
+      let arr = new Array("egg01", "egg02", "egg03", "egg04", "egg05");
+
+      // Generate an array of people
+      const people = [];
+
+      for (let i = 1; i <= numPeople; i++) {
+        people.push(i);
+        /*console.log(people);
+        console.log(numWinners);*/
+        /* if ( i <= numWinners){
+                 event.preventDefault()
+                 list.innerText = '인원을 다시 설정해라';
+             }else{
+               
+             }*/
+      }
+
+      // Shuffle the array
+      for (let i = people.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [people[i], people[j]] = [people[j], people[i]];
+      }
+
+      // Select the winners
+      const winners = people.slice(0, numWinners);
+
+      // Create the cards element
+      const cards = document.createElement("div");
+      cards.id = "cards";
+
+      // Create a card for each person
+      for (let i = 0; i < numPeople; i++) {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        let ran = Math.floor(Math.random() * 5);
+        card.style.backgroundImage = `url(img/${arr[ran]}.png)`;
+
+        card.innerHTML = people[i];
+        if (winners.includes(people[i])) {
+          card.classList.add("winner");
+        }
+
+        // Randomize the position of the card
+        card.style.order = Math.floor(Math.random() * numPeople);
+
+        card.addEventListener("click", flipCard);
+
+        cards.appendChild(card);
+
+      }
+
+      // Add the cards to the page
+      const winnersDiv = document.getElementById("winners");
+      winnersDiv.insertBefore(cards, winnersDiv.firstChild);
+
+
+      function flipCard() {
+        this.classList.toggle("flipped");
+
+
+        if (this.classList.contains('winner')) {
+          this.style.backgroundImage = `url(img/bang.png)`;
+          this.style.transform = 'scale(2)';
+          this.style.transform = 'scale(1)';
+          var audio = document.getElementById('audio_plays')
+          audio.play();
+          document.getElementById("img").style.transform = `scale(2.5)`;
+          document.getElementById("img").style.zIndex = `500`
+          setTimeout(function () { document.getElementById("img").style.transform = `scale(1)` }, 1300)
+          setTimeout(function () { document.getElementById("img").style.zIndex = `1` }, 500)
+
+        } else {
+          this.style.backgroundImage = `url(img/.png)`;
+        }
+
+        /*  const list = document.getElementById("list")
+          list.innerText = winners;*/
+      }
+
+    }
+    window.onload = function () {
+      document.querySelector(".but_on").addEventListener("click", function () {
+        var audio1 = new Audio("bgm/Morning Kiss.mp3");
+        audio1.loop = true; // 반복재생
+        audio1.volume = 0.5; // 음량 설정
+        audio1.play(); // sound1.mp3 재생
+      });
+    }
+
+
+
+
+  </script>
+  <style type="text/css">
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 30px;
+    }
+
+    input[type="number"] {
+      width: 100px;
+      margin: 10px 0;
+      padding: 5px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    button {
+      width: 150px;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 4px;
+      background-color: #4caf50;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #3e8e41;
+    }
+
+    #winners {
+      /*background: url(img/snake.gif) no-repeat;
+  background-size: contain;*/
+      height: 50%;
+      width: 100%;
+    }
+
+    #winners img {
+      width: 100%;
+      height: 100%;
+      transition: all 0.5s;
+      z-index: 1;
+      position: relative;
+
+    }
+
+    #cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 30px 0;
+      position: absolute;
+      z-index: 100;
+
+    }
+
+    .card {
+      width: 100px;
+      height: 118px;
+      border-radius: 4px;
+      margin: 0px;
+      margin-bottom: 0px;
+      cursor: pointer;
+      transition: transform 0.2s;
+      background: url("img/egg01.png") no-repeat;
+      background-size: cover;
+      /*flex: 0 0 calc(25% - 20px);*/
+      line-height: 270px;
+      text-align: center;
+      text-indent: -9999999px;
+
+    }
+
+    .card.flipped {
+      /*background:url("img/bg2.png");*/
+      background-size: cover;
+    }
+
+    .card.winner.flipped {
+      background: url("img/bang.png");
+      background-size: cover;
+      pointer-events: none;
+      animation-name: winner;
+      animation-duration: 2s;
+    }
+
+    #result {
+      margin: 30px 0;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .list {
+      padding: 20px;
+      font-size: 15px;
+      color: red;
+      text-align: center;
+    }
+
+    .but {
+      margin-top: -15px;
+    }
+
+    @keyframes winner {
+      0% {
+        transform: scale(1);
+      }
+
+      100% {
+        transform: scale(2);
+      }
+    }
+
+    #audio_play {
+      display: none;
+    }
+
+    .prevnext {
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .prev,
+    .next {
+      display: block;
+      text-align: center;
+      text-decoration: none;
+      border: 1px solid #ccc;
+      padding: 10px;
+      background-color: #fff;
+      color: #333;
+    }
+  </style>
+
+<body>
+  <h1>뱀을 조심하라!</h1>
+  <form id="form">
+    참여인원을 입력해주세요: <input type="number" id="numPeople" value="12"><br>
+    당첨자인원을 입력해주세요: <input type="number" id="numWinners" value="2"><br>
+    <button type="button" onclick="generateWinners()" class="but_on">GOGO</button>
+  </form>
+  <form class="but">
+    <input type="button" value="다시시작" onClick="window.location.reload()">
+  </form>
+  <div id="winners">
+    <img src="img/snake3.gif" id="img">
+    <div id="cards"></div>
+    <div id="result"></div>
+  </div>
+  <div id="list"></div>
+  <audio id='audio_play' src='bgm/mag.wav'>
+  </audio>
+  <audio id='audio_plays' src='bgm/mag.wav'>
+
+  </audio>
+  <div class="prevnext">
+    <a href="menu.html" class="prev">이전 화면</a>
+    <a href="womenmaaaaaaap.html" class="next">다음화면</a>
+  </div>
+</body>
+
+</html>

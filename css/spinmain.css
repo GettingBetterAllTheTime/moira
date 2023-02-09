@@ -1,0 +1,158 @@
+@charset "utf-8";
+@import url(./default.css);
+@font-face {
+    font-family: 'HBIOS-SYS';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/HBIOS-SYS.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'TTTtangsbudaejjigaeB';
+    color: #fff;
+}
+
+.spinmain {
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    position: relative;
+}
+
+.spinmain> h2 {
+    width: 100%;
+    height: 50px;
+    text-align: center;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.spinmain> #Helpbtn {
+    width: 120px;
+    height: 40px;
+    background: rgb(255, 252, 252);
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    border-radius: 20px;
+    margin: 20px 0px 0px 20px;
+    box-shadow: 2px 3px 2px rgb(187, 192, 190);
+}
+
+.spinmain> .helpmodal {
+    width: 300px;
+    height: 160px;
+    background: rgba(255, 252, 252, 0.84);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 20px;
+    box-shadow: 2px 3px 2px rgb(187, 192, 190);
+    display: none;
+}
+
+.spinmain> .helpmodal p:nth-child(1) {
+    margin-top: 14%;
+}
+
+.spinmain> .helpmodal p {
+    color: #000;
+    font-size: 12px;
+    margin: 5px 0px 0px 10px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.spinmain> .helpmodal> a {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: #000;
+    margin-top: 12px;
+    color: #fff;
+}
+
+.spinmain> .join {
+    width: 150px;
+    height: 420px;
+    background: cornflowerblue;
+    margin: 0px auto 20px;
+    border-radius: 20px;
+}
+
+.spinmain> .join> .inwon {
+    width: 100%;
+    padding: 5px 0px 5px 0px;
+    margin-bottom: 18%;
+    background-color: rgb(112, 119, 229);
+    color: rgb(255, 255, 255);
+    font-weight: bold;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.spinmain> .join> button {
+    width: 100px;
+    height: 40px;
+    margin: 5px 0px 0px 18%;
+    border-radius: 20px;
+    box-shadow: 3px 2px 3px #000;
+    font-weight: bold;
+}
+
+.spinmain> .join> button:nth-child(1) {
+    margin-top: 20px;
+}
+
+
+.spinmain> .nextbtn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 3% 0px 2% 0px ;
+    background: #fff;
+    color: #000;
+    padding: 10px 0px 10px 0px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.spinmain> .gomain {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: #fff;
+    color: #000;
+    padding: 10px 0px 10px 0px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+
+.spinmain> .checkP {
+    width: 100%;
+    text-align: center;
+    background: #000;
+    color: red;
+    font-weight: bold;
+    font-size: 27px;
+    padding: 10px 0px 10px 0px;
+    position: relative;
+    left: 0px;
+    bottom: 20%;
+    animation: koko 1s infinite;
+    display: none;
+
+}
+
+@keyframes koko {
+    0%{
+        background: red;
+        color: #000;
+    }
+
+    100%{
+
+    }
+}

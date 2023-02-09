@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="KO">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="module" src="https://code.jquery.com/jquery-3.6.1.js"></script>
+    <style>
+        /*기초 세팅*/
+        body,
+        section,
+        div,
+        label,
+        button,
+        input,
+        ul,
+        li,
+        p {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        button {
+            border: none;
+        }
+
+
+        img {
+            display: block;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /*섹션1 위치입력 받기 */
+
+        .locasect1 {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: #000;
+            transition: 0.8s;
+            position: absolute;
+        }
+
+        .locasect1>.locaform {
+            width: 90%;
+            max-width: 640px;
+            position: relative;
+            left: 50%;
+            top: 30%;
+            transform: translate(-50%, -50%);
+        }
+
+        .locasect1>.locaform>p {
+            text-align: center;
+            font-size: 23px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .locasect1>.locaform>.locainput {
+            display: block;
+            width: 100%;
+            height: 50px;
+        }
+
+        .locasect1>.locaform>.locainput::placeholder {
+            padding-left: 8px;
+        }
+
+        .locasect1>.locaform>.locabtn {
+            width: 120px;
+            height: 40px;
+            border-radius: 10px;
+            background: cornflowerblue;
+            color: #000;
+            font-weight: bold;
+            font-size: 20px;
+            position: absolute;
+            left: 50%;
+            bottom: -70px;
+            transform: translate(-50%);
+            cursor: pointer;
+        }
+
+        .kiki {
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: rgba(255, 0, 0, 0.5);
+            color: #fff;
+            position: absolute;
+            left: 0px;
+            top: 50%;
+            transition: 0.7s;
+        }
+
+
+        /*섹션2 메뉴?벌칙선택하기 */
+
+        .locasect2 {
+            width: 100vw;
+            max-width: 576px;
+            margin: auto;
+            height: 100vh;
+            background: url(./img/mgrc.png) no-repeat center;
+            background-size: cover;
+            overflow: hidden;
+        }
+
+        .locasect2inner {
+            width: 90%;
+            height: 100%;
+            max-width: 640px;
+            margin: 50px auto;
+        }
+
+        .locasect2>.inputmenu {
+            width: 100%;
+            height: 100px;
+            background: rgba(220, 20, 60, 0.5);
+            position: absolute;
+            left: 0px;
+            top: 50%;
+            transform: translate(0, -50%);
+            display: none;
+        }
+
+        .locasect2>.inputmenu>input {
+            width: 200px;
+            height: 40px;
+            position: absolute;
+            left: 30%;
+            top: 50%;
+            transform: translate(-30%, -50%);
+        }
+
+        .locasect2>.inputmenu>input::placeholder {
+            padding: 10px;
+            font-size: 18px;
+            color: #999;
+        }
+
+        .locasect2>.inputmenu>.menubtn {
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            top: 50%;
+            right: 10%;
+            transform: translate(-10%, -50%);
+            font-weight: bold;
+        }
+
+        .locasect2>.locasect2inner>ul {
+            width: 100%;
+            max-width: 576px;
+            height: 100%;
+            margin: auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-content: flex-start;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .locasect2>.locasect2inner>ul>li {
+            height: 120px;
+            width: 48%;
+            border: 1px solid #fff;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+
+        .locasect2>.locasect2inner>ul>li>.zhongcate {
+            display: block;
+            line-height: 120px;
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .locasect2>.cookingmodal {
+            width: 100%;
+            max-width: 576px;
+            margin: auto;
+            height: 50vh;
+            background-color: rgba(255, 255, 255, 0.5);
+            position: absolute;
+            left: 0px;
+            top: 50%;
+            transform: translateY(-50%);
+            text-align: center;
+            display: none;
+        }
+
+        .locasect2>.cookingmodal div {
+            position: absolute;
+            z-index: 1000;
+        }
+
+        .locasect2>.cookingmodal .modal1 {
+            width: 100%;
+            max-width: 600px;
+            height: 100%;
+            /* left: 0px;
+            top: 0px; */
+            /* display: flex;
+            flex-wrap: wrap;
+            align-content: center;
+            justify-content: space-between;            
+            gap:10px; */
+            margin: auto;
+        }
+
+        .locasect2>.cookingmodal .modal1 p {
+            color: rgb(0, 0, 0);
+            width: 44%;
+            float: left;
+            font-size: 20px;
+            text-align: center;
+            padding: 10px;
+            box-sizing: border-box;
+            background: rgba(255, 20, 145, 0.5);
+            margin: 10px;
+        }
+
+
+        .locasect2>.cookingmodal .modal2 {
+            width: 20%;
+            padding: 16px;
+            background: rgb(123, 223, 223);
+            left: 50%;
+            bottom: 10%;
+            transform: translateX(-50%);
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #fff;
+        }
+
+
+        .locasect2>.bbbbtttnnn {
+            display: block;
+            width: 100px;
+            height: 50px;
+            line-height: 50px;
+            font-weight: bold;
+            border-radius: 10px;
+            text-align: center;
+            background: deeppink;
+            color: rgb(255, 255, 255);
+            position: absolute;
+            left: 50%;
+            top: 80%;
+            transform: translateX(-50%);
+            z-index: 50;
+        }
+
+        .locasect1 {
+            display: block;
+        }
+
+        .locasect2 {
+            display: none;
+        }
+
+        .locasect3 {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="locasect1">
+        <div class="locaform">
+            <p>간단한 주소를 입력해주세요</p>
+            <input type="text" class="locainput" placeholder="ex : 서울특별시 서초구 방배천로">
+            <button type="button" class="locabtn">NEXT</button>
+        </div>
+        <div id="hoyi">주소를 입력하고 NEXT 버튼을 눌러주세요</div>
+    </section>
+
+    <section class="locasect2">
+        <div class="locasect2inner">
+            <ul class="dcate">
+                <li><a href="#" class="zhongcate">한식</a></li>
+                <li><a href="#" class="zhongcate">일식</a></li>
+                <li><a href="#" class="zhongcate">중식</a></li>
+                <li><a href="#" class="zhongcate">패스트푸드</a></li>
+                <li><a href="#" class="zhongcate">직접입력</a></li>
+                <li><a href="random.html" class="zhongcate">랜덤선택</a></li>
+            </ul>
+        </div>
+        <div class="inputmenu">
+            <input type="text" placeholder="ex: 베스킨라빈스">
+            <button class="menubtn">OK</button>
+            <div id="hoyi2"></div>
+        </div>
+        <div class="cookingmodal">
+
+            <div class="modal1">
+            </div>
+            <div class="modal2">뒤로가기</div>
+        </div>
+        <a href="./menu.html" class="bbbbtttnnn">게임 고르기</a>
+
+    </section>
+    <script>
+        localStorage.removeItem("woData");
+        const setc1 = document.querySelector('.locasect1'); // 첫번째 주소입력 섹션
+        const setc2 = document.querySelector('.locasect2'); // 두번째 메뉴선택 섹션
+
+        // 주소입력 부분
+        let locainput = document.querySelector('.locainput'); // 주소입력하는 input 태그 
+        const nextbtn = document.querySelector('.locabtn'); // 주소입력하고 넘어가는 버튼
+        const dding = document.querySelector('#hoyi'); // 그 주소를 입력안하고 버튼 눌렀을때 나올 경고 모달
+        nextbtn.addEventListener('click', function () { // 버튼 눌렀을때
+            if (locainput.value == "") { // 아무것도 입력하지않고 버튼 눌렀으면
+                dding.classList.add('kiki'); // 경고창 모달 나온다
+                setTimeout(() => {
+                    dding.classList.remove('kiki'); // 1.5초뒤 사라짐
+                }, 1500)
+            } else { // 입력된게 있으면 이걸 어떻게 맞는 주소인지 아닌지 체크할 방법은 생각해봐야함
+                localStorage.setItem('haddress', locainput.value); // 로컬 스토리지에 입력한 주소 저장
+                setc1.style.display = 'none';
+                setc2.style.display = 'block';
+            };
+        });
+
+
+        // 메뉴선택
+
+        const menuObj = { // 카테별로 메뉴 객체  계속 추가해도됨 nenu5 6 7 8 9 10 뭐 상관없음 내용도 변경해도됨 
+            kfood: {
+                menu1: '비빔밥',
+                menu2: '김치찌개',
+                menu3: '부대찌개',
+                menu4: '김밥'
+            },
+
+            jfood: {
+                menu1: '초밥',
+                menu2: '우동',
+                menu3: '라멘',
+                menu4: '카츠'
+            },
+
+            cfood: {
+                menu1: '자장면',
+                menu2: '훠궈',
+                menu3: '양꼬치',
+            },
+
+            ffood: {
+                menu1: '롯데리아',
+                menu2: '노브랜드',
+                menu3: '맥도날드',
+                menu4: 'KFC',
+                menu5: '서브웨이'
+            }
+        }
+
+
+        // 생성한 p테그 ( 각 카테 별로 메뉴 수가 다르니 여기서 만들고 지우는데 초기화 한다고 생각하면 됨)
+        function removePtag() {
+            const elmt = document.querySelectorAll('.modal1> p');
+            elmt.forEach(function (elmt) {
+                elmt.remove();
+            })
+        };
+
+
+        //여기서 메뉴 카테의 음식? 만큼 p태그 만들어서 메뉴 리스트 만드는곳
+        function goMenuNameTag(pCount, tObj) {
+            if (document.querySelectorAll('.modal1> p').length > 0) { // 처음인데 (즉 메뉴 선택을 할때마다 확인해서 이미 만들어저 있는 p태그를 지우기위함)
+                removePtag();
+            };
+            const modal1 = document.querySelector('.modal1'); // 카테의 메뉴 리스트 들이 들어갈 곳
+            for (let i = 0; i < pCount; i++) { // pCount 는 각 카테의 오브젝트 갯수가 다르니 받아서 그만큼 돌면서 p 태그를 만들고 내용 넣어주고 
+                const newP = document.createElement('p'); // p태그 생성,  카테별 메뉴 갯수 만큼 돌겠죠잉
+                modal1.appendChild(newP);
+            };
+            const wowp = document.querySelectorAll('.modal1> p'); // 여기서 이제 각 카테 메뉴를 p 태그에 넣어줌
+            for (let z = 0; z < wowp.length; z++) {
+                wowp[z].textContent = menuObj[tObj][`menu${z + 1}`]// 이렇게 맞는지.. 아니 정확하게는 효율적인지 모르겠지만 오류없음
+                // console.log(wowp[z].textContent = menuObj[tObj][`menu${z + 1}`]);
+            };
+            wowp.forEach((item, index) => { // 이제 그 해당 메뉴를 클릭하면(선택) 로컬 스토리지에 저장
+                item.addEventListener('click', function (e) {
+                    localStorage.setItem('menu', e.target.textContent);
+                });
+            });
+        };
+
+        const menus = document.querySelectorAll('.dcate> li'); // 카테 한식 중식 일식 뭐 등등
+        const menusModal = document.querySelector('.cookingmodal'); //메뉴 들어갈 p태그의 부모
+        const inputmenu = document.querySelector('.locasect2> .inputmenu');// 이건 이제 직접입력 선택했을때
+        const inputmenuinput = document.querySelector('.locasect2> .inputmenu> input')// input 태그
+        const menubtn = document.querySelector('.menubtn'); // input 태그 입력하고 확인버튼
+
+        menus.forEach((item, index) => { // 카테 선택했을때 여기서 이제 직접 입력인지 뭘 선택는지 확인하고 화면전환
+            item.addEventListener('click', function (e) {
+                const menutext = e.target.textContent;
+                menusf(menutext);// 
+                if (menutext != '직접입력') {
+                    if (menusModal.style.display == 'none' || menusModal.style.display == '') {
+                        menusModal.style.display = ' block';
+                    } else {
+                        menusModal.style.display = 'none';
+                    };
+                } else {
+                    inputmenu.style.display = 'block';
+                };
+            });
+        });
+
+
+        //메뉴 카테별 분류 하는곳 이렇게 지저분하게 하면안되는데..아으
+        function menusf(menucate) { //menucate 선택한 카테 값을 받아서 ..분류 원래 이렇게 하면 아으 징그러워 나중에 정신차리고 이쁘게 수정해보겠습니다.
+            if (menucate == '한식') {
+                goMenuNameTag(Object.keys(menuObj['kfood']).length, 'kfood');
+            } else if (menucate == '일식') {
+                goMenuNameTag(Object.keys(menuObj['jfood']).length, 'jfood');
+            } else if (menucate == '중식') {
+                goMenuNameTag(Object.keys(menuObj['cfood']).length, 'cfood');
+            } else if (menucate == '패스트푸드') {
+                goMenuNameTag(Object.keys(menuObj['ffood']).length, 'ffood');
+            }
+            // console.log(menucate);
+        };
+
+        // 디자인 고민하다가 그냥 이렇게 나눴는데..한마디로 뒤로가기 버튼이요...
+        // 너무 그지 같으니 수정하신다면 클래스명만 .modal2 로 하시면됩니다..
+        const modal2 = document.querySelector('.modal2');
+        modal2.addEventListener('click', function () {
+            menusModal.style.display = 'none';
+        });
+
+
+        // 메뉴 직접입력하고나서 아니지 아무것도 입력안하고 버튼 누르면 
+        // 이것도 모달창 만들어야되는데 안만들었네요 ..ㅋㅋㅋ...
+        menubtn.addEventListener('click', function () {
+            if (inputmenuinput.value != "") {
+
+                localStorage.setItem('menu', inputmenuinput.value);
+                setTimeout(() => {
+                    inputmenu.style.display = 'none';
+                }, 500)
+            } else {
+                document.querySelector('#hoyi2').innerHTML = "메뉴를 입력하고 NEXT 버튼을 눌러주세요";
+                document.querySelector('#hoyi2').classList.add('kiki'); // 경고창 모달 나온다
+                setTimeout(() => {
+                    document.querySelector('#hoyi2').innerHTML = "";
+                    document.querySelector('#hoyi2').classList.remove('kiki'); // 1.5초뒤 사라짐
+                }, 1500)
+            }
+        });
+
+
+        // localStorage.clear();
+
+
+        /*
+        // 로컬 스토리지에 어떤것들있는지 확인하는것. 
+        for (let i = 0; i < localStorage.length; i++) {
+            let key = localStorage.key(i);
+            let value = localStorage.getItem(key);
+            console.log(key + ": " + value);
+        }
+
+        */
+    </script>
+</body>
+
+</html>

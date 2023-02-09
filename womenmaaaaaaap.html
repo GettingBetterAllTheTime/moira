@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="KO">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>찾아라 맵</title>
+    <script type="module" src="https://code.jquery.com/jquery-3.6.1.js"></script>
+</head>
+<style>
+    body,
+    div,
+    p,
+    ul,
+    li,
+    ::after {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .nolocation {
+        width: 100%;
+        height: 80px;
+        background: rgba(255, 0, 0, 0.5);
+        position: absolute;
+        left: 0px;
+        top: 50%;
+        transform: translate(0px, -50%);
+        display: none;
+    }
+
+    .nolocation::after {
+        content: '주소가 잘못되었습니다!!';
+        text-align: center;
+        font-size: 29px;
+        line-height: 80px;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .nomenu {
+        width: 100%;
+        height: 80px;
+        background: rgba(255, 0, 0, 0.5);
+        position: absolute;
+        left: 0px;
+        top: 50%;
+        transform: translate(0px, -50%);
+        display: none;
+    }
+
+    .nomenu::after {
+        content: '주변에 해당 메뉴가 없습니다!';
+        text-align: center;
+        font-size: 29px;
+        line-height: 80px;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .wowerror {
+        width: 100%;
+        height: 80px;
+        background: rgba(255, 0, 0, 0.5);
+        position: absolute;
+        left: 0px;
+        top: 50%;
+        transform: translate(0px, -50%);
+        display: none;
+    }
+
+    .wowerror::after {
+        content: '무슨에러인지 모르겠네..';
+        text-align: center;
+        font-size: 29px;
+        line-height: 80px;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    .adrlist {
+        width: 100%;
+        position: absolute;
+        left: 0px;
+        top: 50%;
+        transform: translate(0px, -50%);
+    }
+
+    .adrlist>ul {
+        margin-bottom: 10px;
+    }
+
+    .adrlist li {
+        width: 100%;
+        height: 25px;
+        line-height: 25px;
+        background: rgba(100, 148, 237, 0.5);
+        text-align: center;
+        font-weight: bold;
+        color: #fff;
+        font-size: 14px;
+        margin-bottom: 3px;
+    }
+
+    .prevnext {
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .prev {
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        border: 1px solid #ccc;
+        padding: 10px;
+        background-color: #fff;
+        color: #333;
+    }
+</style>
+
+<body>
+    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ea3db63fe64092742d0d775bed595f3b&libraries=services"></script>
+    <div class="mymap"></div>
+    <div class="nolocation"></div>
+    <div class="nomenu"></div>
+    <div class="wowerror"></div>
+    <div class="adrlist"></div>
+    <div class="prevnext">
+        <a href="menu.html" class="prev">이전 화면</a>
+    </div>
+    <script>
+
+        const mapContainer = document.querySelector('.mymap') // 지도를 표시할 div 
+        const nolocation = document.querySelector('.nolocation');
+
+
+        mapOption = {
+            center: new kakao.maps.LatLng(37.3405143, 126.8357822), // 지도의 중심좌표 우리집
+            level: 4 // 360 * 640 기준으로 가득참 
+        };
+        var map = new kakao.maps.Map(mapContainer, mapOption);  // 지도를 생성합니다  
+
+        // 주소-좌표 변환 객체를 생성합니다
+        var geocoder = new kakao.maps.services.Geocoder();
+
+        geocoder.addressSearch(localStorage.getItem('haddress'), function (result, status) {
+            // 정상적으로 검색이 완료됐으면 
+            if (status === kakao.maps.services.Status.OK) {
+
+                var coords = new kakao.maps.LatLng(result[0].y, result[0].x); // 주소 좌표 위치좌표였나..
+
+                keywordSearch();
+            } else {
+                console.log(`status : ${status}`); // 제로 리절트 이렇게 나올겁니다.
+                console.log(`coords : ${coords}`); // 공백으로 나오고 
+                nolocation.style.display = 'block';
+                //todo 여기는 다시 주소 입력창으로 넘어가야됨.
+            }
+
+
+
+
+
+            function keywordSearch() {
+                var keyword = localStorage.getItem('menu');
+                var markers = [];
+
+                var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+
+                var ps = new kakao.maps.services.Places(map);
+
+                var searchOption = {
+                    location: coords, //좌표 x y 
+                    radius: 1000, // 지도현재위치 중심으로 m 단위
+                    size: 5 // 여기 숫자로 리스트 갯수 조절가능
+                };
+
+                // 장소검색 객체를 통해 키워드로 장소검색
+                ps.keywordSearch(keyword, placesSearchCB, searchOption);
+
+                // 장소검색이 완료됐을 때 호출되는 콜백함수
+                function placesSearchCB(data, status, pagination) {
+                    console.log(`status : ${status}`);
+                    if (status === kakao.maps.services.Status.OK) {
+
+
+                        // console.log((data[0]['address_name']));
+
+                        localStorage.setItem('woData', JSON.stringify(data))
+
+
+                        // 페이지 번호를 표출합니다
+                        //displayPagination(pagination);
+
+                    } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+
+
+                        const nomenu = document.querySelector('.nomenu');
+                        nomenu.style.display = 'block';
+                        setTimeout(() => {
+                            // todo 이곳에 다시 메뉴 선택하는 곳으로 이동해야됨.
+                            alert('검색 결과가 존재하지 않습니다.');
+                            nomenu.style.display = 'none';
+                            return;
+                        }, 2000)
+
+                    } else if (status === kakao.maps.services.Status.ERROR) {
+
+                        alert('검색 결과 중 오류가 발생했습니다.');
+                        return;
+
+                        //todo 여기는 추후 발생하는 오류 상황을 확인하고 처리해야될듯.
+
+                    };
+                };
+            };
+        });
+
+
+        const adrlist = document.querySelector('.adrlist');
+
+        function getAdrList() {
+
+            const wodata = JSON.parse(localStorage.getItem('woData'));
+
+            for (let i = 0; i < JSON.parse(localStorage.getItem('woData')).length; i++) {
+                const newUl = document.createElement('ul');
+                adrlist.appendChild(newUl);
+                for (let z = 0; z < 3; z++) {
+                    const newLi = document.createElement('li');
+                    newUl.appendChild(newLi)
+                };
+            };
+            const uls = document.querySelectorAll('.adrlist> ul');
+            const lis = document.querySelectorAll('.adrlist> ul> li');
+
+            console.log("======리스트======");
+            console.log(wodata);
+
+            for (let z = 0; z < uls.length; z++) {
+                const wli = uls[z].querySelectorAll('li');
+                for (let h = 0; h < wli.length; h++) {
+                    switch (h) {
+                        case 0:
+                            wli[0].textContent = wodata[z]['place_name'];
+                            break;
+                        case 1:
+                            wli[1].textContent = wodata[z]['address_name'];
+                            break;
+                        case 2:
+                            if (wodata[z]['phone'] == "") {
+                                wli[2].textContent = '범짱 기능사 화이팅';
+                            } else {
+                                wli[2].textContent = wodata[z]['phone'];
+                            };
+                            break;
+                        default:
+                            break;
+                    };
+                };
+            };
+        };
+
+        setTimeout(() => {
+            getAdrList();
+        }, 2500)
+
+    </script>
+</body>
+
+</html>

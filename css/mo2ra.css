@@ -1,0 +1,228 @@
+@charset "utf-8";
+@import url(./default.css);
+
+
+body {
+    font-family: 'Cafe24Ssurround';
+    color: #000;
+}
+
+section {
+    width: 100%;
+    height: 640px;
+}
+        @keyframes rotatebox{
+            0%{ transform:rotateX(-5deg) rotateY(0deg) ; }
+            100%{ transform:rotateX(-5deg) rotateY(-360deg) ; }
+        }
+        #main{ width: 100vw; height: 100vh;
+            overflow: hidden;
+            background: url("../img/bg003.jpg") no-repeat;
+            background-size: cover;
+        }
+
+        .container{
+           /* width: 250px; height: 380px;
+            transform-style: preserve-3d; transform: rotateX(-20deg) rotateY(20deg);
+            animation:rotatebox 10s linear 0s infinite;
+            background: url("../img/wheel5.png") no-repeat;
+            background-size: contain;
+            position: relative; left: 20%; top: 250px;*/
+
+        }
+
+        .int img{
+            width: 100vw; height: 110vh;
+            
+        }
+        .name{
+            font-size: 1.5rem;
+            position: absolute; left: 50%; bottom:20px; transform: translateX(-50%);
+            width: 192px; height: 65px;
+        }
+        .name a{
+        
+        }
+        .name img{
+            width: 192px; height: 65px;
+        }
+        .moira{
+            position: absolute; left: 50%; top:100px; transform: translateX(-50%);
+            display: block; 
+            color: #fff;
+            z-index: 1000;
+            
+
+        
+            
+        }
+        .moira a{
+            color: #fff;
+        }
+        .moira img{
+           width: 200px; height: 39px;
+        }
+        .free{
+            font-size: 8px;
+            position: absolute; bottom: 0px; right: 0px;
+        }
+        .free2{
+            font-size: 8px;
+            position: absolute; bottom: 10px; right: 0px;
+        }
+
+.sect1 {
+    overflow: hidden;
+    position: relative;
+    display: block;
+    width: 100vw; height: 100vh;
+}
+
+.sect1> .main_h1 {
+   /* width: 100%;
+    font-size: 40px;
+    text-align: center;
+    margin-top: 25px;    */
+}
+
+/*.sect1 img {
+    width: 100%;
+    height: 70%;
+    position: absolute;
+    left: 0px;
+    top: 15%;
+}
+*/
+/*
+.sect1> .sect1img2,
+.sect1> .sect1img3 {
+    /* display: none; 
+}
+
+
+.sect1> .nextbtn {
+    display: block;
+    font-size: 30px;
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    left: 0px;
+    bottom: 5%;
+    color: #000;
+}*/
+/*------------------------- sect1 --------------------------------*/
+.sect2 {
+    overflow: hidden;
+    position: relative;
+    display: none;
+
+}
+
+.sect2> h2 {
+    width: 100%;
+    font-size: 32px;
+    text-align: center;
+    margin-top: 25px;
+    color: deepskyblue;
+}
+
+.sect2> .innerbox {
+    width:320px;
+    height: auto;
+    margin: 0px auto;
+}
+
+.sect2> .innerbox> .join {
+    width: 140px;
+    height: 500px;
+    float: left;
+    margin-left: 20px;
+}
+
+.sect2> .innerbox> .join> .inwon {
+    width: 100px;
+    text-align: center;
+    margin: 0px 0px 5px 5px;
+}
+
+.sect2> .innerbox> .join> button {
+    width: 100px;
+    height: 50px;
+    margin: 0px 0px 10px 5px;
+}
+
+.sect2> .innerbox> .join> .joininput {
+    width: 100px;
+    height: 50px;
+    text-align: center;
+}
+
+.sect2> .innerbox> .join> p> input {
+    width: 80px;
+    margin-top: 5px;
+    border: none;
+    background :rgba(3, 3, 3, 0.484);
+    padding: 5px;
+}
+
+.sect2> .innerbox> .join> p> input::placeholder {
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+
+.sect2> .innerbox> .winner {
+    width: 140px;
+    height: 500px;
+    margin-left: 180px;
+}
+
+.sect2> .innerbox> .winner> .inwon {
+    width: 100px;
+    text-align: center;
+    margin: 0px 0px 5px 5px;
+}
+
+.sect2> .innerbox> .winner> button {
+    width: 100px;
+    height: 50px;
+    margin-bottom: 10px;
+    margin: 0px 0px 10px 5px;
+}
+
+.sect2> .innerbox> .winner> .winnerinput {
+    width: 100px;
+    height: 20px;
+    text-align: center;
+}
+
+.sect2> .innerbox> .winner> p> input {
+    width: 80px;
+    margin-top: 5px;
+    border: none;
+    background :rgba(3, 3, 3, 0.484);
+    padding: 5px;
+}
+
+.sect2> .innerbox> .winner> p> input::placeholder {
+    text-align: center;
+    color: rgb(0, 0, 0);
+}
+.sect2> .innerbox> .winner> :nth-child(1) {
+    margin-top: 15px;
+}
+
+.inputcs {
+    display: none;
+}
+
+.sect2> .innerbox> .nextbtn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: #000;
+    font-size: 20px;
+}
+.sect3{
+    display: none;
+}

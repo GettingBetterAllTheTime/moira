@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="KO">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>random</title>
+
+  <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="tab_box">
+        <div class="tab_btns">
+          <a href="#box1" id="bo1" class="active">식사</a>
+          <a href="#box2" id="bo2">디저트</a>
+        </div>
+        <div id="box1">
+          <div id="food-box">
+            <div id="food-box-inner">
+              <p id="food-text">랜덤 선택 후회없기</p>
+              <div id="food-image">
+                <img src="img/food/randombox.png" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="box2">
+          <div id="food-box2">
+            <div id="food-box-inner">
+              <p id="food-text2">랜덤 선택 후회없기</p>
+              <div id="food-image2">
+                <img src="img/food/randombox.png" alt="">
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </nav>
+  </header>
+  <div class="prevnext">
+    <a href="./menu.html" class="prev">이전 화면</a>
+    <a href="womenmaaaaaaap.html" class="next">다음화면</a>
+  </div>
+</body>
+<!-- CSS for the food suggestion box -->
+<style>
+  html {
+    overflow-y: hidden
+  }
+
+  header {
+    padding-top: 60px;
+  }
+
+  a {
+    text-decoration: none;
+    color: #333;
+  }
+
+  .tab_box {
+    border: 5px solid #f9f9f9;
+  }
+
+  body {
+    background: url(img/food/bg.jpeg) no-repeat;
+    background-size: 150vh;
+  }
+
+
+  #food-box,
+  #food-box2 {
+    width: 300px;
+    height: 300px;
+    /* border: 1px solid black; */
+    cursor: pointer;
+    /* margin: 50px auto; */
+    margin: auto;
+
+
+  }
+
+  #food-box-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding-top: 34px;
+  }
+
+  #food-text,
+  #food-text2 {
+    transition: transform 0.5s;
+    font-size: 1.5rem;
+    color: #f60;
+  }
+
+  #food-box:hover #food-text,
+  #food-box2:hover #food-text2 {
+    transform: scale(1.2);
+  }
+
+  #food-image,
+  #food-image2 {
+    width: 200px;
+    height: 200px;
+    /* background-color: white;
+    border: 1px solid black; */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+
+  #food-image img,
+  #food-image2 img {
+    width: 100%;
+    height: 100%;
+  }
+
+  .tab_box {
+    width: 350px;
+    /* height: 600px; */
+    box-sizing: border-box;
+    margin: 100px auto;
+  }
+
+  .tab_box>.tab_btns {
+    height: 40px;
+  }
+
+  .tab_box>.tab_btns>a {
+    display: block;
+    width: 100px;
+    height: 40px;
+    background: rgb(173 172 172 / 28%);
+    /* border: 1px solid #222; */
+    border-bottom: 0px;
+    float: left;
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+  }
+
+  .tab_box>.tab_btns>a:nth-child(2) {
+    margin-left: -1px;
+  }
+
+  .tab_box>.tab_btns>a.active {
+    background: #fff;
+  }
+
+  #box1 {
+    height: 400px;
+    /* background: #fff; */
+    background-color: rgba(255, 255, 255, 0.8);
+    /* border: 1px solid #222; */
+    font-size: 12px;
+  }
+
+  #box2 {
+    height: 400px;
+    /* background: #fff; */
+    background-color: rgba(255, 255, 255, 0.8);
+    /* border: 1px solid #222; */
+    display: none;
+  }
+
+
+  .flip {
+    animation: flip 0.5s cubic-bezier(0.455, 0.030, 0.515, 0.955) 1 alternate both;
+  }
+
+  @keyframes flip {
+    0% {
+      transform: rotateY(0);
+    }
+
+    /*50% {
+  transform: rotateY(-720deg);
+  }*/
+    100% {
+      transform: rotateY(-720deg);
+    }
+  }
+
+  h1 {
+    display: none;
+  }
+
+  .ui-page {
+    /* min-height: 0 !important;  */
+    margin-top: -50px;
+  }
+
+  .prevnext {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .prev,
+  .next {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #fff;
+    color: #333;
+  }
+</style>
+
+<!-- JavaScript for displaying the food suggestion and handling click events -->
+<script>
+  // Generate a random number between min and max (inclusive)
+  function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+  // Display a random food suggestion and image
+  function showFood() {
+    const foods = [
+      { name: '피자', image: 'pizza.png' },
+      { name: '햄버거', image: 'hamburger.png' },
+      { name: '초밥', image: 'sushi.png' },
+      { name: '타코', image: 'taco.png' },
+      { name: '치킨', image: 'chicken.png' },
+      { name: '스파게티', image: 'spaghetti.png' },
+      { name: '돼지국밥', image: 'soup.png' },
+      { name: '샌드위치', image: 'sandwich.png' },
+      { name: '샐러드', image: 'salad.png' },
+      { name: '편의점', image: 'com.png' },
+      { name: '김치찌개', image: 'kimchi.png' },
+      { name: '된장찌개', image: 'dong.png' },
+      { name: '돈까스', image: 'don.png' },
+      { name: '뼈다귀 해장국', image: 'bon.png' },
+      { name: '중식', image: 'china.png' },
+      { name: '떡복이', image: 'dduck.png' },
+      { name: '삼겹살', image: 'sam.png' },
+      { name: '소고기', image: 'soso.png' },
+      { name: '마라탕', image: 'mara.png' },
+      { name: '샤브샤브', image: 'ssha.png' },
+      { name: '부페', image: 'bp.png' },
+      { name: '과일', image: 'fu.png' },
+      { name: '콩나물해장국', image: 'kong.png' },
+      { name: '양념,간장게장', image: 'ge.png' },
+      { name: '백반', image: 'back.png' },
+    ];
+
+
+
+    const foodIndex = getRandomInt(0, foods.length - 1);
+    const foodText = document.getElementById('food-text');
+    foodText.innerHTML = foods[foodIndex].name;
+    const foodImage = document.getElementById('food-image');
+    foodImage.innerHTML = '<img src="img/food/' + foods[foodIndex].image + '">';
+
+  }
+  function toggleFlip() {
+    const foodBoxm = document.getElementById('food-box');
+    foodBox.classList.toggle('flip');
+  }
+
+  const foodBox = document.getElementById('food-box');
+  foodBox.addEventListener('click', function () {
+    const mainfoodtext = document.querySelector('#food-text');
+
+
+    showFood();
+    foodBox.classList.add('flip');
+    foodBox.addEventListener('animationend', function () {
+      localStorage.setItem('menu', mainfoodtext.textContent)
+      foodBox.classList.remove('flip');
+    })
+  });
+
+
+  console.log(localStorage.getItem('menu'));
+
+  function showFood2() {
+    const foods2 = [
+      { name: '아이스크림', image: 'Ice-cream.png' },
+      { name: '샐러드', image: 'salad.png' },
+      { name: '편의점', image: 'com.png' },
+      { name: '케익', image: 'pang.png' },
+      { name: '푸딩', image: 'pudding.png' },
+      { name: '껌', image: 'gum.png' },
+      { name: '과일', image: 'fu.png' },
+      { name: '젤리', image: 'gummy.png' },
+      { name: '사탕', image: 'can.png' },
+      { name: '초콜릿', image: 'choco.png' },
+      { name: '마카롱', image: 'maca.png' },
+      { name: '팥빙수', image: 'bing.png' },
+      { name: '커피', image: 'co.png' },
+      { name: '공기', image: 'ar.png' },
+    ];
+
+
+
+    const foodIndex2 = getRandomInt(0, foods2.length - 1);
+    const foodText2 = document.getElementById('food-text2');
+    foodText2.innerHTML = foods2[foodIndex2].name;
+    const foodImage2 = document.getElementById('food-image2');
+    foodImage2.innerHTML = '<img src="img/food/' + foods2[foodIndex2].image + '">';
+
+  }
+
+
+
+  const foodBoxd = document.getElementById('food-box2');
+  const dgtfood = document.querySelector('#food-text2');
+  foodBoxd.addEventListener('click', function () {
+    showFood2();
+    foodBoxd.classList.add('flip');
+    foodBoxd.addEventListener('animationend', function () {
+      foodBoxd.classList.remove('flip');
+      localStorage.setItem('menu', dgtfood.textContent);
+
+    })
+  });
+
+
+
+  $(function () {
+    $('.tab_btns>a').on('click', function (event) {
+      event.preventDefault();
+      $('.tab_btns>a').removeClass('active');
+      $(this).addClass('active');
+      $('.tab_btns').nextAll().hide();
+      $($(this).attr('href')).show();
+    });
+
+    $("body").on("swipeleft", function (event) {
+      event.preventDefault();
+      $('.tab_btns>a').removeClass('active');
+      $('#bo1').addClass('active');
+      $('.tab_btns').nextAll().hide();
+      // $('#bo1').attr('href').show();
+
+      $('#box1').show();
+      $('#box2').hide();
+    });
+
+    $("body").on("swiperight", function (event) {
+      event.preventDefault();
+      $('.tab_btns>a').removeClass('active');
+      $('#bo2').addClass('active');
+      $('.tab_btns').nextAll().hide();
+      // $('#bo2').attr('href').show();
+      $('#box2').show();
+      $('#box1').hide();
+    });
+  });
+
+
+
+  // $("body").on("swipeleft", function () {
+  //   $('.tab_btns>a:nth-child(2)').removeClass('active');
+  //   $('.tab_btns>a:nth-child(1)').addClass('active');
+  // });
+
+  // $("body").on("swiperight", function () {
+  //   $('.tab_btns>a:nth-child(1)').removeClass('active');
+  //   $('.tab_btns>a:nth-child(2)').addClass('active');
+  // });
+
+
+
+  $("body").on("swipeleft", function () {
+    // event.preventDefault();
+    $('.tab_btns>a').removeClass('active');
+    $(this).addClass('active');
+    $('.tab_btns').nextAll().hide();
+    $($(this).attr('href')).show();
+  });
+
+  $("body").on("swiperight", function () {
+    // event.preventDefault();
+    $('.tab_btns>a').removeClass('active');
+    $(this).addClass('active');
+    $('.tab_btns').nextAll().hide();
+    $($(this).attr('href')).show();
+  });
+
+</script>
+
+</html>

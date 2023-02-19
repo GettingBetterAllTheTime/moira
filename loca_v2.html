@@ -71,6 +71,8 @@
             display: block;
             width: 100%;
             height: 50px;
+            padding-left: 10px;
+            box-sizing: border-box;
         }
 
         .locasect1>.locaform>.locainput::placeholder {
@@ -80,7 +82,7 @@
         .locasect1>.locaform>.locabtn {
             width: 120px;
             height: 40px;
-            border-radius: 10px;
+            border-radius: 5px;
             background: cornflowerblue;
             color: #000;
             font-weight: bold;
@@ -105,16 +107,23 @@
             transition: 0.7s;
         }
 
-
         /*섹션2 메뉴?벌칙선택하기 */
+
+        .test {
+            text-align: center;
+            background: #fff;
+            padding: 20px;
+            box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+        }
 
         .locasect2 {
             width: 100vw;
             max-width: 576px;
             margin: auto;
             height: 100vh;
-            background: url(./img/mgrc.png) no-repeat center;
-            background-size: cover;
+            /* background: url(./img/mgrc.png) no-repeat center; */
+            background: #fff;
+            /* background-size: cover; */
             overflow: hidden;
         }
 
@@ -161,6 +170,7 @@
             font-weight: bold;
         }
 
+        /* 
         .locasect2>.locasect2inner>ul {
             width: 100%;
             max-width: 576px;
@@ -173,22 +183,136 @@
             gap: 10px;
         }
 
-        .locasect2>.locasect2inner>ul>li {
+        .locasect2>.locasect2inner>ul> .zhongcate {
             height: 120px;
-            width: 48%;
+            width: 20%;
             border: 1px solid #fff;
             border-radius: 10px;
             box-sizing: border-box;
         }
 
-        .locasect2>.locasect2inner>ul>li>.zhongcate {
+        .locasect2>.locasect2inner>ul> .zhongcate {
             display: block;
             line-height: 120px;
             text-align: center;
-            color: #fff;
+            color: #333;
             font-weight: bold;
             font-size: 20px;
             cursor: pointer;
+            box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+        } 
+        */
+
+        .locasect2>.locasect2inner>ul {
+            width: 100%;
+            max-width: 576px;
+            height: 100%;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 80px 80px 80px 80px;
+            grid-template-rows: 90px 90px 90px 90px;
+            grid-gap: 10px;
+            justify-content: center;
+            grid-template-areas:
+                "치킨 중국집 버거 한식"
+                "카페 분식 피자 일식"
+                "찜 샌드위치 회 고기"
+                "샐러드 도시락 랜덤선택 편의점"
+        }
+
+        .locasect2>.locasect2inner>ul>.zhongcate {
+            border: 1px solid #fff;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+
+        .zhongcate1 {
+            grid-area: 치킨;
+        }
+
+        .zhongcate2 {
+            grid-area: 중국집;
+        }
+
+        .zhongcate3 {
+            grid-area: 버거;
+        }
+
+        .zhongcate4 {
+            grid-area: 한식;
+        }
+
+        .zhongcate5 {
+            grid-area: 카페;
+        }
+
+        .zhongcate6 {
+            grid-area: 분식;
+        }
+
+        .zhongcate7 {
+            grid-area: 피자;
+        }
+
+        .zhongcate8 {
+            grid-area: 일식;
+        }
+
+        .zhongcate9 {
+            grid-area: 찜;
+        }
+
+        .zhongcate10 {
+            grid-area: 샌드위치;
+        }
+
+        .zhongcate11 {
+            grid-area: 회;
+        }
+
+        .zhongcate12 {
+            grid-area: 고기;
+        }
+
+        .zhongcate13 {
+            grid-area: 샐러드;
+        }
+
+        .zhongcate14 {
+            grid-area: 도시락;
+        }
+
+        .zhongcate15 {
+            grid-area: 랜덤선택;
+        }
+
+        .zhongcate16 {
+            grid-area: 편의점;
+        }
+
+        .locasect2>.locasect2inner>ul>.zhongcate {
+            display: block;
+            line-height: 120px;
+            text-align: center;
+            color: #333;
+            font-weight: bold;
+            font-size: 20px;
+            cursor: pointer;
+            /* box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px; */
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        }
+
+        .locasect2>.locasect2inner>ul>.zhongcate>img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .locasect2>.locasect2inner>ul>.zhongcate18 img {
+            width: 100%;
+        }
+
+        .zhongcate15 img {
+            width: 100%;
         }
 
         .locasect2>.cookingmodal {
@@ -236,7 +360,6 @@
             margin: 10px;
         }
 
-
         .locasect2>.cookingmodal .modal2 {
             width: 20%;
             padding: 16px;
@@ -250,22 +373,22 @@
             color: #fff;
         }
 
-
         .locasect2>.bbbbtttnnn {
-            display: block;
+            /* display: block; */
             width: 100px;
             height: 50px;
             line-height: 50px;
             font-weight: bold;
-            border-radius: 10px;
+            border-radius: 5px;
             text-align: center;
-            background: deeppink;
+            background: skyblue;
             color: rgb(255, 255, 255);
             position: absolute;
             left: 50%;
-            top: 80%;
+            top: 85%;
             transform: translateX(-50%);
             z-index: 50;
+            display: none;
         }
 
         .locasect1 {
@@ -279,29 +402,48 @@
         .locasect3 {
             display: none;
         }
+
+        .locasect2_p {
+            text-align: center;
+            padding-top: 40px;
+            font-size: 20px;
+            font-weight: bold;
+        }
     </style>
 </head>
 
 <body>
-
     <section class="locasect1">
         <div class="locaform">
             <p>간단한 주소를 입력해주세요</p>
-            <input type="text" class="locainput" placeholder="ex : 서울특별시 서초구 방배천로">
+            <input type="text" class="locainput" placeholder="ex : 테헤란로">
             <button type="button" class="locabtn">NEXT</button>
         </div>
         <div id="hoyi">주소를 입력하고 NEXT 버튼을 눌러주세요</div>
     </section>
 
     <section class="locasect2">
+        <div class="test"></div>
+        <p class="locasect2_p">메뉴를 선택해주세요.</p>
         <div class="locasect2inner">
             <ul class="dcate">
-                <li><a href="#" class="zhongcate">한식</a></li>
-                <li><a href="#" class="zhongcate">일식</a></li>
-                <li><a href="#" class="zhongcate">중식</a></li>
-                <li><a href="#" class="zhongcate">패스트푸드</a></li>
-                <li><a href="#" class="zhongcate">직접입력</a></li>
-                <li><a href="random.html" class="zhongcate">랜덤선택</a></li>
+                <li class="zhongcate zhongcate1"><img src="img/menu/chicken.jpg" alt="치킨"></li>
+                <li class="zhongcate zhongcate2"><img src="img/menu/china.jpg" alt="중국집"></li>
+                <li class="zhongcate zhongcate3"><img src="img/menu/burger.jpg" alt="버거"></li>
+                <li class="zhongcate zhongcate4"><img src="img/menu/kfood.jpg" alt="한식"></li>
+                <li class="zhongcate zhongcate5"><img src="img/menu/dessert.jpg" alt="카페"></li>
+                <li class="zhongcate zhongcate6"><img src="img/menu/bunsik.jpg" alt="분식"></li>
+                <li class="zhongcate zhongcate7"><img src="img/menu/pizza.jpg" alt="피자"></li>
+                <li class="zhongcate zhongcate8"><img src="img/menu/cutlet.jpg" alt="일식"></li>
+                <li class="zhongcate zhongcate9"><img src="img/menu/zzim.jpg" alt="찜"></li>
+                <li class="zhongcate zhongcate10"><img src="img/menu/Sandwich.jpg" alt="샌드위치"></li>
+                <li class="zhongcate zhongcate11"><img src="img/menu/sushi.jpg" alt="스시"></li>
+                <li class="zhongcate zhongcate12"><img src="img/menu/bbq.jpg" alt="고기"></li>
+                <li class="zhongcate zhongcate13"><img src="img/menu/salad.jpg" alt="샐러드"></li>
+                <li class="zhongcate zhongcate14"><img src="img/menu/dosirak.jpg" alt="도시락"></li>
+                <li class="zhongcate zhongcate15"><a href="random.html"><img src="img/menu/randombox.png"
+                            alt="랜덤선택"></a></li>
+                <li class="zhongcate zhongcate16"><img src="img/menu/com.png" alt="편의점"></li>
             </ul>
         </div>
         <div class="inputmenu">
@@ -309,12 +451,13 @@
             <button class="menubtn">OK</button>
             <div id="hoyi2"></div>
         </div>
+        <!-- 
         <div class="cookingmodal">
-
             <div class="modal1">
             </div>
             <div class="modal2">뒤로가기</div>
         </div>
+        -->
         <a href="./menu.html" class="bbbbtttnnn">게임 고르기</a>
 
     </section>
@@ -324,7 +467,7 @@
         const setc2 = document.querySelector('.locasect2'); // 두번째 메뉴선택 섹션
 
         // 주소입력 부분
-        let locainput = document.querySelector('.locainput'); // 주소입력하는 input 태그 
+        const locainput = document.querySelector('.locainput'); // 주소입력하는 input 태그 
         const nextbtn = document.querySelector('.locabtn'); // 주소입력하고 넘어가는 버튼
         const dding = document.querySelector('#hoyi'); // 그 주소를 입력안하고 버튼 눌렀을때 나올 경고 모달
         nextbtn.addEventListener('click', function () { // 버튼 눌렀을때
@@ -337,9 +480,9 @@
                 localStorage.setItem('haddress', locainput.value); // 로컬 스토리지에 입력한 주소 저장
                 setc1.style.display = 'none';
                 setc2.style.display = 'block';
+                document.querySelector('.test').textContent = localStorage.getItem('haddress');
             };
         });
-
 
         // 메뉴선택
 
@@ -373,7 +516,6 @@
             }
         }
 
-
         // 생성한 p테그 ( 각 카테 별로 메뉴 수가 다르니 여기서 만들고 지우는데 초기화 한다고 생각하면 됨)
         function removePtag() {
             const elmt = document.querySelectorAll('.modal1> p');
@@ -381,7 +523,6 @@
                 elmt.remove();
             })
         };
-
 
         //여기서 메뉴 카테의 음식? 만큼 p태그 만들어서 메뉴 리스트 만드는곳
         function goMenuNameTag(pCount, tObj) {
@@ -411,22 +552,21 @@
         const inputmenuinput = document.querySelector('.locasect2> .inputmenu> input')// input 태그
         const menubtn = document.querySelector('.menubtn'); // input 태그 입력하고 확인버튼
 
-        menus.forEach((item, index) => { // 카테 선택했을때 여기서 이제 직접 입력인지 뭘 선택는지 확인하고 화면전환
-            item.addEventListener('click', function (e) {
-                const menutext = e.target.textContent;
-                menusf(menutext);// 
-                if (menutext != '직접입력') {
-                    if (menusModal.style.display == 'none' || menusModal.style.display == '') {
-                        menusModal.style.display = ' block';
-                    } else {
-                        menusModal.style.display = 'none';
-                    };
-                } else {
-                    inputmenu.style.display = 'block';
-                };
-            });
-        });
-
+        // menus.forEach((item, index) => { // 카테 선택했을때 여기서 이제 직접 입력인지 뭘 선택는지 확인하고 화면전환
+        //     item.addEventListener('click', function (e) {
+        //         const menutext = e.target.textContent;
+        //         menusf(menutext);// 
+        //         if (menutext != '직접입력') {
+        //             if (menusModal.style.display == 'none' || menusModal.style.display == '') {
+        //                 menusModal.style.display = ' block';
+        //             } else {
+        //                 menusModal.style.display = 'none';
+        //             };
+        //         } else {
+        //             inputmenu.style.display = 'block';
+        //         };
+        //     });
+        // });
 
         //메뉴 카테별 분류 하는곳 이렇게 지저분하게 하면안되는데..아으
         function menusf(menucate) { //menucate 선택한 카테 값을 받아서 ..분류 원래 이렇게 하면 아으 징그러워 나중에 정신차리고 이쁘게 수정해보겠습니다.
@@ -444,11 +584,18 @@
 
         // 디자인 고민하다가 그냥 이렇게 나눴는데..한마디로 뒤로가기 버튼이요...
         // 너무 그지 같으니 수정하신다면 클래스명만 .modal2 로 하시면됩니다..
-        const modal2 = document.querySelector('.modal2');
-        modal2.addEventListener('click', function () {
-            menusModal.style.display = 'none';
-        });
+        // const modal2 = document.querySelector('.modal2');
+        // modal2.addEventListener('click', function () {
+        //     menusModal.style.display = 'none';
+        // });
 
+        menus.forEach((item) => {
+            item.addEventListener('click', function (e) {
+                const menukeyword = item.querySelector("img").alt;
+                localStorage.setItem("menu", menukeyword);
+                //localStorage.setItem('menu',e.target.value);
+            });
+        });
 
         // 메뉴 직접입력하고나서 아니지 아무것도 입력안하고 버튼 누르면 
         // 이것도 모달창 만들어야되는데 안만들었네요 ..ㅋㅋㅋ...
@@ -480,8 +627,21 @@
             let value = localStorage.getItem(key);
             console.log(key + ": " + value);
         }
-
         */
+
+        const siblings = (el) => [...el.parentElement.children].filter(node => node != el);
+
+        let menu = document.querySelectorAll('.dcate>li');
+        menu.forEach((item, index) => {
+            item.addEventListener('click', function (e) {
+                item.style.border = "2px solid tomato";
+                siblings(item).forEach(otem => {
+                    otem.style.border = "none";
+                })
+                document.querySelector('.bbbbtttnnn').style.display = "block";
+            });
+        })
+
     </script>
 </body>
 
